@@ -1,8 +1,16 @@
 <?php
 
+include('conexao.php');
+
+include('login/verifica_login.php');
+
+include('login/redirect.php');
+
 if(isset($_GET['codigo'])){
     $codigo = $_GET['codigo'];
 }
+
+$matricula = $_SESSION['matricula'];
 
 
 
@@ -18,7 +26,7 @@ if(isset($_GET['codigo'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>CheckList - AGV</title>
+    <title>Live Report - Innovation</title>
 
     <!-- Favicon -->
     <link rel="icon" href="./img/core-img/favicon.ico">
@@ -71,7 +79,7 @@ if(isset($_GET['codigo'])){
 
                     <!-- Logo -->
                     <a class="nav-brand" href="index.php">
-                        <h2>AGV CheckList</h2>
+                        <h2>Relatório de <?php echo $_SESSION['nome'];?> </h2>
                     </a>
 
                     <!-- Navbar Toggler -->
@@ -186,49 +194,68 @@ if(isset($_GET['codigo'])){
 
                         <div id="formulario" class="post-content">
                             <form method="post" action="formCheck.php">
-                                <span class="post-date" id="datou">23</span>
+                                <span class="post-date" id="datou"><?php echo date("d ") ."de". date(" M "). "de ". date("Y") ?></span>
                                 <h3 id="numcar">
-                                    <label>Check List Carro <?php echo $codigo; ?></label>
+                                    <label>Atividades</label>
                                 </h3>
-                                <input type="text" id="codigo" name="codigo" value="<?php echo $codigo; ?>" hidden>
-                                <div>
-                                    <input type="checkbox" id="alimentacao" checked name="alimentacao" onclick="justify()">
-                                    <label for="alimentacao">Verifique se a bateria, carregador e cabos estão funcionando adequadamente.</label>
-                                    <input type="text" id="justali" name="justali" placeholder="Justifique: " style=" display= none">
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="otico" checked name="otico" onclick="justify()">
-                                    <label for="otico">Verifique se os sensores óticos estão funcionando adequadamente (sensor de presença).</label>
-                                    <input type="text" id="justotic" name="justotic" placeholder="Justifique: " style=" display= none">
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="mecanico" checked name="mecanico" onclick="justify()">
-                                    <label for="mecanico">Verifique se os sensores mecânicos estão funcionando adequadamente (barramecânica).</label>
-                                    <input type="text" id="justmecanic" name="justmecanic" placeholder="Justifique: " style=" display= none">
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="fita" checked name="fita" onclick="justify()">
-                                    <label for="fita">Verifique se o caminho da fita reflexiva que devem estar completos e em ótimas condições.</label>
-                                    <input type="text" id="justfita" name="justfita" placeholder="Justifique: " style=" display= none">
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="integridade" checked name="integridade" onclick="justify()">
-                                    <label for="integridade">Revise o AGV. Ele precisa estar com os parafusos, botões e identificações completas.</label>
-                                    <input type="text" id="justintegro" name="justintegro" placeholder="Justifique: " style=" display= none">
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="sinalizacao" checked name="sinalizacao" onclick="justify()">
-                                    <label for="sinalizacao">Sinalização sonora deve estar funcionando adequadamente.</label>
-                                    <input type="text" id="justsinal" name="justsinal" placeholder="Justifique: " style=" display= none">
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="conservacao" checked name="conservacao" onclick="justify()">
-                                    <label for="conservacao">Verifique o estado de conservação do AGV.</label>
-                                    <input type="text" id="justconserv" name="justconserv" placeholder="Justifique: " style=" display= none">
-                                </div>
+
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Atividade</th>
+                                            <th>Razão</th>
+                                            <th>Save</th>
+                                            <th>Inicio</th>
+                                            <th>Prazo</th>
+                                            <th>Dificuldade</th>
+                                            <th>Contramedida</th>
+                                            <th>Status</th>
+                                            <th>%</th>
+                                            <th>Supervisão</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <?php
+                                    
+                                      $pdo_verifica = $conexao_pdo->prepare("select atividade, razao, save, data_ini, prazo, dificuldade, contramedida, status, percent, supervisao from activities WHERE matricula = $matricula order by data_ini DESC ");
+                     $pdo_verifica->execute();
+            while($fetch = $pdo_verifica->fetch()){
+                
+                if($fetch['supervisao'] == "Aprovado"){
+                    $cor1 = "green";
+                    
+                }else{
+                    
+                    $cor1 = "red";
+                }
+                  
+                	echo '<tr>';
+			
+			echo '<td>' . $fetch['atividade'] . '</td>';
+            echo '<td>' . $fetch['razao'] . '</td>';
+                echo '<td> $' . $fetch['save'] . '</td>';
+                echo '<td>' . date("d/m/Y", strtotime($fetch['data_ini'])) . '</td>';
+                echo '<td>' . date("d/m/Y", strtotime($fetch['prazo'])) . '</td>';
+                echo '<td>' . $fetch['dificuldade'] . '</td>';
+                echo '<td>' . $fetch['contramedida'] . '</td>';
+                echo '<td>' . $fetch['status'] . '</td>';
+                echo '<td>' . $fetch['percent'] . '</td>';
+                echo '<td>' . $fetch['supervisao'] . '</td>';
+                
+                
+                echo '</tr>';
+            }
+                                      ?>
+
+                                    </tbody>
+
+                                </table>
 
                                 <div class="col-12">
-                                    <button id="btnSend" name="btnSend" type="submit" class="btn uza-btn btn-3 mt-15">Enviar Check List</button>
+                                    <button id="btnSend" name="btnSend" type="submit" class="btn uza-btn btn-3 mt-15">Adicionar Atividade </button>
                                 </div>
                             </form>
                         </div>
@@ -246,71 +273,7 @@ if(isset($_GET['codigo'])){
     </section>
     <!-- ***** Blog Area End ***** -->
 
-    <script>
-        document.getElementById("datou").value = new Date().getFullYear();
 
-        var alimentacao = document.getElementById("alimentacao");
-        var otico = document.getElementById("otico");
-        var mecanico = document.getElementById("mecanico");
-        var fita = document.getElementById("fita");
-        var integridade = document.getElementById("integridade");
-        var sinalizacao = document.getElementById("sinalizacao");
-        var conservacao = document.getElementById("conservacao");
-
-        document.getElementById("justali").style.display = "none";
-        document.getElementById("justotic").style.display = "none";
-        document.getElementById("justmecanic").style.display = "none";
-        document.getElementById("justfita").style.display = "none";
-        document.getElementById("justintegro").style.display = "none";
-        document.getElementById("justsinal").style.display = "none";
-        document.getElementById("justconserv").style.display = "none";
-
-        function justify() {
-            if (alimentacao.checked) {
-                document.getElementById("justali").style.display = "none";
-            } else {
-                document.getElementById("justali").style.display = "block";
-            }
-
-            if (otico.checked) {
-                document.getElementById("justotic").style.display = "none";
-            } else {
-                document.getElementById("justotic").style.display = "block";
-            }
-
-            if (mecanico.checked) {
-                document.getElementById("justmecanic").style.display = "none";
-            } else {
-                document.getElementById("justmecanic").style.display = "block";
-            }
-
-            if (fita.checked) {
-                document.getElementById("justfita").style.display = "none";
-            } else {
-                document.getElementById("justfita").style.display = "block";
-            }
-
-            if (integridade.checked) {
-                document.getElementById("justintegro").style.display = "none";
-            } else {
-                document.getElementById("justintegro").style.display = "block";
-            }
-
-            if (sinalizacao.checked) {
-                document.getElementById("justsinal").style.display = "none";
-            } else {
-                document.getElementById("justsinal").style.display = "block";
-            }
-
-            if (conservacao.checked) {
-                document.getElementById("justconserv").style.display = "none";
-            } else {
-                document.getElementById("justconserv").style.display = "block";
-            }
-
-        }
-
-    </script>
 
     <!-- ***** Footer Area Start ***** -->
     <footer class="footer-area section-padding-80-0">
