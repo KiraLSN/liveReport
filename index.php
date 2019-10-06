@@ -13,8 +13,8 @@
     <!-- Favicon -->
     <link rel="icon" href="./img/agv.png">
     <!-- ICONE DE ATALHOS -->
-    <link rel="apple-touch-icon" href="img/agv.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="img/agv.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="img/report-icon-27.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/report-icon-27.jpg" type="image/x-icon" />
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="login.css">
