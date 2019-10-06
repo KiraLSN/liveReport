@@ -17,10 +17,10 @@
 // Variáveis da conexão
 
 
-$base_dados  = 'agv-check';
+$base_dados  = 'report-inno';
 $usuario_bd  = 'Luciano';
 $senha_bd    = '123';
-$host_db     = '192.168.0.17';
+$host_db     = 'localhost';
 $charset_db  = 'UTF8';
 $conexao_pdo = null; 
 $dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
