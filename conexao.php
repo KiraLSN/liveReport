@@ -17,9 +17,9 @@
 // Variáveis da conexão
 
 
-$base_dados  = 'report-inno';
-$usuario_bd  = 'Luciano';
-$senha_bd    = '123';
+$base_dados  = 'report-inno_db';
+$usuario_bd  = 'root';
+$senha_bd    = '';
 $host_db     = 'localhost';
 $charset_db  = 'UTF8';
 $conexao_pdo = null; 
