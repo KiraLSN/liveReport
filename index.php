@@ -141,7 +141,7 @@
                 <div class="single-blog-post bg-img mb-80" style="background-image: url(./img/bg-img/8.jpg);">
 
                     <div id="formulario" class="post-content">
-                        <form method="post" action="formCheck.php">
+                        <form method="post" action="index2.php">
 
                             <h3>
                                 Identifique-se
