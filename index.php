@@ -142,49 +142,14 @@
 
                     <div id="formulario" class="post-content">
                         <form method="post" action="formCheck.php">
-                            <span class="post-date" id="datou">23</span>
-                            <h3 id="numcar">
-                                <label>Check List Carro <?php echo $codigo; ?></label>
+
+                            <h3>
+                                Identifique-se
                             </h3>
-                            <input type="text" id="codigo" name="codigo" value="<?php echo $codigo; ?>" hidden>
-                            <div>
-                                <input type="checkbox" id="alimentacao" checked name="alimentacao" onclick="justify()">
-                                <label for="alimentacao">Verifique se a bateria, carregador e cabos estão funcionando adequadamente.</label>
-                                <input type="text" id="justali" name="justali" placeholder="Justifique: " style=" display= none">
-                            </div>
-                            <div>
-                                <input type="checkbox" id="otico" checked name="otico" onclick="justify()">
-                                <label for="otico">Verifique se os sensores óticos estão funcionando adequadamente (sensor de presença).</label>
-                                <input type="text" id="justotic" name="justotic" placeholder="Justifique: " style=" display= none">
-                            </div>
-                            <div>
-                                <input type="checkbox" id="mecanico" checked name="mecanico" onclick="justify()">
-                                <label for="mecanico">Verifique se os sensores mecânicos estão funcionando adequadamente (barramecânica).</label>
-                                <input type="text" id="justmecanic" name="justmecanic" placeholder="Justifique: " style=" display= none">
-                            </div>
-                            <div>
-                                <input type="checkbox" id="fita" checked name="fita" onclick="justify()">
-                                <label for="fita">Verifique se o caminho da fita reflexiva que devem estar completos e em ótimas condições.</label>
-                                <input type="text" id="justfita" name="justfita" placeholder="Justifique: " style=" display= none">
-                            </div>
-                            <div>
-                                <input type="checkbox" id="integridade" checked name="integridade" onclick="justify()">
-                                <label for="integridade">Revise o AGV. Ele precisa estar com os parafusos, botões e identificações completas.</label>
-                                <input type="text" id="justintegro" name="justintegro" placeholder="Justifique: " style=" display= none">
-                            </div>
-                            <div>
-                                <input type="checkbox" id="sinalizacao" checked name="sinalizacao" onclick="justify()">
-                                <label for="sinalizacao">Sinalização sonora deve estar funcionando adequadamente.</label>
-                                <input type="text" id="justsinal" name="justsinal" placeholder="Justifique: " style=" display= none">
-                            </div>
-                            <div>
-                                <input type="checkbox" id="conservacao" checked name="conservacao" onclick="justify()">
-                                <label for="conservacao">Verifique o estado de conservação do AGV.</label>
-                                <input type="text" id="justconserv" name="justconserv" placeholder="Justifique: " style=" display= none">
-                            </div>
+                            <input type="text" id="login" name="login" placeholder="Insira a Matricula">
 
                             <div class="col-12">
-                                <button id="btnSend" name="btnSend" type="submit" class="btn uza-btn btn-3 mt-15">Enviar Check List</button>
+                                <button id="btnSend" name="btnSend" type="submit" class="btn uza-btn btn-3 mt-15">Entrar</button>
                             </div>
                         </form>
                     </div>

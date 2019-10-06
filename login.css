@@ -2186,6 +2186,35 @@ input:focus {
     z-index: -1;
 }
 
+@media only screen and (min-width: 1366px) and (max-width: 1926px) {
+    .single-blog-post {
+        position: relative;
+        z-index: 1;
+        -webkit-transition-duration: 500ms;
+        -o-transition-duration: 500ms;
+        transition-duration: 500ms;
+        box-shadow: 0 8px 22px 0 rgba(0, 0, 0, 0.1);
+        width: 500px;
+        left: 250px;
+        text-align: center;
+    }
+
+    input {
+        text-align: center;
+        font-size: 14px;
+        width: 200px;
+    }
+
+    h3 {
+        font-size: 38px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+}
+
 .single-blog-post {
     position: relative;
     z-index: 1;
@@ -2193,6 +2222,13 @@ input:focus {
     -o-transition-duration: 500ms;
     transition-duration: 500ms;
     box-shadow: 0 8px 22px 0 rgba(0, 0, 0, 0.1);
+    width: 500px;
+    left: 40px;
+    text-align: center;
+}
+
+input {
+    text-align: center;
 }
 
 .single-blog-post .post-content {
