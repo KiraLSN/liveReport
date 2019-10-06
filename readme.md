@@ -5,6 +5,9 @@ Template Author URI: https://colorlib.com
 Version: 1.0.0
 Last Update: Dec 31, 2018
 ----------------------------------------------------- */
+/*To Use like a report method. */
+
+
 
 /* --------------------------------
 To start 'Gulp' => npm run start
