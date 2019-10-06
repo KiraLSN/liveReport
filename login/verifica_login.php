@@ -11,17 +11,16 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 	$dados_usuario = $_SESSION;
 }
 
+
 // Verifica se os campos de usuário e senha existem
 // E se não estão em branco
 if ( 
-	isset ( $dados_usuario['mysingle1'] ) && 
-	isset ( $dados_usuario['senha'] )   &&
-  ! empty ( $dados_usuario['mysingle1'] ) &&
-  ! empty ( $dados_usuario['senha'] ) 
+	isset ( $dados_usuario['login'] )  &&
+  ! empty ( $dados_usuario['login'] ) 
 ) {
 	// Faz a consulta do nome de usuário na base de dados
-	$pdo_checa_user = $conexao_pdo->prepare('SELECT * FROM usuarios WHERE mysingle = ? LIMIT 1');
-	$verifica_pdo = $pdo_checa_user->execute( array( $dados_usuario['mysingle1'] ) );
+	$pdo_checa_user = $conexao_pdo->prepare('SELECT * FROM users WHERE matricula = ? LIMIT 1');
+	$verifica_pdo = $pdo_checa_user->execute( array( $dados_usuario['login'] ) );
 	
 	// Verifica se a consulta foi realizada com sucesso
 	if ( ! $verifica_pdo ) {
@@ -33,15 +32,12 @@ if (
 	$fetch_usuario = $pdo_checa_user->fetch();
 	
 	// Verifica se a senha do usuário está correta
-	if ( crypt( $dados_usuario['senha'], $fetch_usuario['senha'] ) === $fetch_usuario['senha'] ) {
+	if ( $dados_usuario['login'] === $fetch_usuario['matricula'] ) {
 		// O usuário está logado
 		$_SESSION['logado']       = true;
 		$_SESSION['nome'] = $fetch_usuario['nome'];
-		$_SESSION['mysingle1']      = $fetch_usuario['mysingle'];
         $_SESSION['matricula']      = $fetch_usuario['matricula'];
-        $_SESSION['cargo']      = $fetch_usuario['cargo'];
-        $_SESSION['aprovador']      = $fetch_usuario['aprovador'];
-		//$_SESSION['user_id']      = $fetch_usuario['user_id'];
+        
 	} else {
 		// Continua deslogado
 		$_SESSION['logado']     = false;
