@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="img/agv.png" type="image/x-icon" />
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
