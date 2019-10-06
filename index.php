@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>CheckList - AGV</title>
+    <title>Live Report - Innovation</title>
 
     <!-- Favicon -->
     <link rel="icon" href="./img/agv.png">
@@ -61,46 +61,17 @@
 
                     <!-- Logo -->
                     <a class="nav-brand" href="index.php">
-                        <h2>AGV CheckList</h2>
+                        <h2>Live Report - Innovation</h2>
                     </a>
 
                     <!-- Navbar Toggler -->
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
 
                     <!-- Menu -->
                     <div class="classy-menu">
                         <!-- Menu Close Button -->
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-
-                        <!-- Nav Start -->
-                        <div class="classynav">
-                            <ul id="nav">
-                                <li class="current-item"><a href="./index.php">Home</a></li>
-                                <li><a href="#">Reatórios</a>
-                                    <ul class="dropdown">
-
-                                        <li><a href="report-diario.php">Reatório Diario </a></li>
-                                        <li><a href="report-mensal.php">- Relatorio Mensal</a></li>
-                                        <li><a href="report.php">- Relatorio Geral</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Intruções</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./blog.html">- Uso do Sistema</a></li>
-                                        <li><a href="./single-blog.html">- Procedimentos de Manutenção do AGV</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./contact.html">Contatos</a></li>
-                            </ul>
 
 
 
-
-                        </div>
                         <!-- Nav End -->
 
                     </div>
@@ -155,21 +126,6 @@
         <div class="container">
 
 
-            <form action="#" method="post">
-                <!--
-            (<a href="http://zxing.appspot.com/scan?ret=http://105.112.244.57:8090/agv-checklist/index2.php?codigo={CODE}">Click para ler o Código QR</a>):
-     -->
-                <?php 
-     if(isset($_GET['codigo'])){
-         $codigo = $_GET['codigo'];
-         echo $codigo;
-     }else{
-         $codigo = "";
-     }
-     
-     ?>
-                <input type="text" name="cod" value="<?= $codigo ?>" hidden />
-            </form>
             <!-- TESTE COM APP DE SCANNER INSTALADO -->
 
 
@@ -181,68 +137,65 @@
             <div class="row">
 
                 <!-- Single Blog Post -->
-                <h3 class="informativo">Click na imagem para Ler o QR Code</h3>
-                <div class="col-12 col-lg-4">
-                    <a href="http://zxing.appspot.com/scan?ret=http://192.168.0.17:8090/agv-checklist/index2.php?codigo={CODE}"><img src="img/QR.png" class="img-qr" id="img-qr"></a>
-                    <div class="single-blog-post bg-img mb-80" style="background-image: url(./img/bg-img/8.jpg);">
-                        <!-- Post Content -->
 
+                <div class="single-blog-post bg-img mb-80" style="background-image: url(./img/bg-img/8.jpg);">
 
+                    <div id="formulario" class="post-content">
+                        <form method="post" action="formCheck.php">
+                            <span class="post-date" id="datou">23</span>
+                            <h3 id="numcar">
+                                <label>Check List Carro <?php echo $codigo; ?></label>
+                            </h3>
+                            <input type="text" id="codigo" name="codigo" value="<?php echo $codigo; ?>" hidden>
+                            <div>
+                                <input type="checkbox" id="alimentacao" checked name="alimentacao" onclick="justify()">
+                                <label for="alimentacao">Verifique se a bateria, carregador e cabos estão funcionando adequadamente.</label>
+                                <input type="text" id="justali" name="justali" placeholder="Justifique: " style=" display= none">
+                            </div>
+                            <div>
+                                <input type="checkbox" id="otico" checked name="otico" onclick="justify()">
+                                <label for="otico">Verifique se os sensores óticos estão funcionando adequadamente (sensor de presença).</label>
+                                <input type="text" id="justotic" name="justotic" placeholder="Justifique: " style=" display= none">
+                            </div>
+                            <div>
+                                <input type="checkbox" id="mecanico" checked name="mecanico" onclick="justify()">
+                                <label for="mecanico">Verifique se os sensores mecânicos estão funcionando adequadamente (barramecânica).</label>
+                                <input type="text" id="justmecanic" name="justmecanic" placeholder="Justifique: " style=" display= none">
+                            </div>
+                            <div>
+                                <input type="checkbox" id="fita" checked name="fita" onclick="justify()">
+                                <label for="fita">Verifique se o caminho da fita reflexiva que devem estar completos e em ótimas condições.</label>
+                                <input type="text" id="justfita" name="justfita" placeholder="Justifique: " style=" display= none">
+                            </div>
+                            <div>
+                                <input type="checkbox" id="integridade" checked name="integridade" onclick="justify()">
+                                <label for="integridade">Revise o AGV. Ele precisa estar com os parafusos, botões e identificações completas.</label>
+                                <input type="text" id="justintegro" name="justintegro" placeholder="Justifique: " style=" display= none">
+                            </div>
+                            <div>
+                                <input type="checkbox" id="sinalizacao" checked name="sinalizacao" onclick="justify()">
+                                <label for="sinalizacao">Sinalização sonora deve estar funcionando adequadamente.</label>
+                                <input type="text" id="justsinal" name="justsinal" placeholder="Justifique: " style=" display= none">
+                            </div>
+                            <div>
+                                <input type="checkbox" id="conservacao" checked name="conservacao" onclick="justify()">
+                                <label for="conservacao">Verifique o estado de conservação do AGV.</label>
+                                <input type="text" id="justconserv" name="justconserv" placeholder="Justifique: " style=" display= none">
+                            </div>
 
-                        <div id="formulario" class="post-content" style="display: none">
-                            <form method="post" action="formCheck.php">
-                                <span class="post-date" id="datou">23</span>
-                                <h3 id="numcar"> </h3>
-
-
-                                <input type="number" id="qrcode" name="alimentacao" hidden>
-
-                                <div>
-                                    <input type="checkbox" id="alimentacao" name="alimentacao">
-                                    <label for="alimentacao">Verifique se a bateria, carregador e cabos estão funcionando adequadamente.</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="otico" name="otico">
-                                    <label for="otico">Verifique se os sensores óticos estão funcionando adequadamente (sensor de presença).</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="mecanico" name="mecanico">
-                                    <label for="macanico">Verifique se os sensores mecânicos estão funcionando adequadamente (barramecânica).</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="fita" name="fita">
-                                    <label for="fita">Verifique se o caminho da fita reflexiva que devem estar completos e em ótimas condições.</label>
-                                </div>
-
-                                <div>
-                                    <input type="checkbox" id="integridade" name="integridade">
-                                    <label for="integridade">Revise o AGV. Ele precisa estar com os parafusos, botões e identificações completas.</label>
-                                </div>
-
-                                <div>
-                                    <input type="checkbox" id="sinalizacao" name="sinalizacao">
-                                    <label for="sinalizacao">Sinalização sonora deve estar funcionando adequadamente.</label>
-                                </div>
-
-                                <div>
-                                    <input type="checkbox" id="conservacao" name="conservacao">
-                                    <label for="conservacao">Verifique o estado de conservação do AGV (limpeza ausência de materiais presos nas rodas, etc).</label>
-                                </div>
-                                <div class="col-12">
-                                    <button id="btnSend" type="submit" class="btn uza-btn btn-3 mt-15">Enviar Check List</button>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="col-12">
+                                <button id="btnSend" name="btnSend" type="submit" class="btn uza-btn btn-3 mt-15">Enviar Check List</button>
+                            </div>
+                        </form>
                     </div>
-
-
-
                 </div>
+
+
             </div>
         </div>
 
 
-        <span id="teste"></span>
+
 
     </section>
     <!-- ***** Blog Area End ***** -->
