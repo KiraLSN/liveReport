@@ -15,12 +15,20 @@
  */
  
 // Variáveis da conexão
+session_cache_expire(60);
+session_start();
 
+if ( ! isset( $_SESSION['logado'] ) ) {
+    $_SESSION['logado'] = false;
+    
+}
+
+$_SESSION['login_erro'] = false;
 
 $base_dados  = 'report-inno_db';
-$usuario_bd  = 'root';
-$senha_bd    = '';
-$host_db     = 'localhost';
+$usuario_bd  = 'Luciano';
+$senha_bd    = 'Luciano405060#';
+$host_db     = '105.103.29.24';
 $charset_db  = 'UTF8';
 $conexao_pdo = null; 
 $dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
