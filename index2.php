@@ -35,7 +35,7 @@ $matricula = $_SESSION['matricula'];
     <link rel="shortcut icon" href="images/ICONETRAI.png" type="image/x-icon" />
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
@@ -115,6 +115,7 @@ $matricula = $_SESSION['matricula'];
                                     </ul>
                                 </li>
                                 <li><a href="./contact.html">Contatos</a></li>
+                                <li><a style="color: red" href="login/sair.php">Logout</a></li>
                             </ul>
 
 
@@ -193,19 +194,28 @@ $matricula = $_SESSION['matricula'];
                     <div class="single-blog-post bg-img mb-80" style="background-image: url(./img/bg-img/8.jpg);">
 
                         <div id="formulario" class="post-content">
-                            <form method="post" action="formCheck.php">
-                                <span class="post-date" id="datou"><?php echo date("d ") ."de". date(" M "). "de ". date("Y") ?></span>
-                                <h3 id="numcar">
+                            <span class="post-date" id="datou"><?php echo date("d ") ."de". date(" M "). "de ". date("Y") ?></span>
+                            <h3 id="numcar">
                                     <label>Atividades</label>
                                 </h3>
+                            <form action="new-form-report.php">
+                                <button id="btnSend" name="btnSend" type="submit" class="btn uza-btn btn-3 mt-15">Adicionar Atividade </button>
+                            </form>
 
+
+                            <form method="post" action="formCheck.php">
+                                
+                                
+                                <div class="col-12 btn">
+
+                                </div>
                                 <table>
                                     <thead>
                                         <tr>
                                             <th>Atividade</th>
                                             <th>Razão</th>
                                             <th>Save</th>
-                                            <th>Inicio</th>
+                                            <!--<th>Inicio</th> -->
                                             <th>Prazo</th>
                                             <th>Dificuldade</th>
                                             <th>Contramedida</th>
@@ -234,15 +244,15 @@ $matricula = $_SESSION['matricula'];
                   
                 	echo '<tr>';
 			
-			echo '<td>' . $fetch['atividade'] . '</td>';
+			echo '<td><a class="edit" href="https://www.w3schools.com">' . $fetch['atividade'] . '</a></td>';
             echo '<td>' . $fetch['razao'] . '</td>';
                 echo '<td> $' . $fetch['save'] . '</td>';
-                echo '<td>' . date("d/m/Y", strtotime($fetch['data_ini'])) . '</td>';
+                //echo '<td>' . date("d/m/Y", strtotime($fetch['data_ini'])) . '</td>';
                 echo '<td>' . date("d/m/Y", strtotime($fetch['prazo'])) . '</td>';
                 echo '<td>' . $fetch['dificuldade'] . '</td>';
                 echo '<td>' . $fetch['contramedida'] . '</td>';
                 echo '<td>' . $fetch['status'] . '</td>';
-                echo '<td>' . $fetch['percent'] . '</td>';
+                echo '<td>' . $fetch['percent'] . '%</td>';
                 echo '<td>' . $fetch['supervisao'] . '</td>';
                 
                 
@@ -254,9 +264,7 @@ $matricula = $_SESSION['matricula'];
 
                                 </table>
 
-                                <div class="col-12">
-                                    <button id="btnSend" name="btnSend" type="submit" class="btn uza-btn btn-3 mt-15">Adicionar Atividade </button>
-                                </div>
+
                             </form>
                         </div>
                     </div>
